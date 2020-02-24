@@ -4,6 +4,8 @@ class TestRPC : ClientSideRPCBase
 	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx)
 	{
 		super.ExecuteRPC(sender, target, ctx);
+
+		if(!IsValidSide()) return; //Wish I didn't need to force people to do this, but returning from super doesn't exit child func.
 		
 		Print("I got a message from the server");
 
