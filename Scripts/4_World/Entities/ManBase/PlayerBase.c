@@ -11,7 +11,17 @@ modded class PlayerBase
 
 	void InitRPCs()
 	{
-		rpcs.Insert(RPCTypeEnum.RPCTest, new TestRPC(RPCTypeEnum.RPCTest));
+	}
+
+	void AddRPC(typename type, int id)
+	{
+		ref RPCBase rpc = type.Spawn();
+
+		if(rpc != null)
+		{
+			rpc.SetRPCType(id);
+			rpcs.Insert(id, rpc);
+		}
 	}
 
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
@@ -20,7 +30,7 @@ modded class PlayerBase
 
 		if(rpc != null)
 		{
-			rpc.ExecuteRPC(sender, this, ctx);
+			rpc.ExecuteRPC(sender, null, ctx);
 			return;
 		}
 

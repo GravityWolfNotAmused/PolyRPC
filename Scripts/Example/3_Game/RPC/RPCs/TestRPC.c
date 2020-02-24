@@ -1,3 +1,4 @@
+/*
 class TestRPC : ClientSideRPCBase
 {
 	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx)
@@ -18,3 +19,4 @@ class TestRPC : ClientSideRPCBase
 		//You may use the Param version of RPCs as well as ScriptRPCs.
 	}
 }
+*/

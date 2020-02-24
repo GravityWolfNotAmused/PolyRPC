@@ -11,7 +11,18 @@ modded class DayZGame
 
 	void InitRPCs()
 	{
-		rpcs.Insert(RPCTypeEnum.RPCTest, new TestRPC(RPCTypeEnum.RPCTest));
+		AddRPC(TestRPC, RPCTypeEnum.RPCTest);
+	}
+
+	void AddRPC(typename type, int id)
+	{
+		ref RPCBase rpc = type.Spawn();
+
+		if(rpc != null)
+		{
+			rpc.SetRPCType(id);
+			rpcs.Insert(id, rpc);
+		}
 	}
 
 	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)

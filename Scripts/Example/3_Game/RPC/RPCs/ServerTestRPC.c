@@ -1,3 +1,4 @@
+/*
 class TestServerRPC : ServerSideRPCBase
 {
 	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx)
@@ -11,3 +12,4 @@ class TestServerRPC : ServerSideRPCBase
 			Print(msg);
 	}
 }
+*/

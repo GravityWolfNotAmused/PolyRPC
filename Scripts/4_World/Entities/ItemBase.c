@@ -1,6 +1,6 @@
 modded class ItemBase
 {
-	protected map<int, ref RPCBase> rpcs;
+	protected ref map<int, ref RPCBase> rpcs;
 
 	void ItemBase()
 	{
@@ -11,7 +11,17 @@ modded class ItemBase
 
 	void InitRPCs()
 	{
+	}
 
+	void AddRPC(typename type, int id)
+	{
+		ref RPCBase rpc = type.Spawn();
+
+		if(rpc != null)
+		{
+			rpc.SetRPCType(id);
+			rpcs.Insert(id, rpc);
+		}
 	}
 
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx) 
@@ -20,7 +30,7 @@ modded class ItemBase
 
 		if(rpc != null)
 		{
-			rpc.ExecuteRPC(sender, this, ctx);
+			rpc.ExecuteRPC(sender, null, ctx);
 			return;
 		}
 

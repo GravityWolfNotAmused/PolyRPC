@@ -1,11 +1,10 @@
 modded class PluginBase
 {
-	private ref map<int, ref RPCBase> rpcs;
+	protected ref map<int, ref RPCBase> rpcs;
 
 	void PluginBase()
 	{
 		rpcs = new map<int, ref RPCBase>;
-		rpcs.Insert(RPCTypeEnum.RPCServerTest, new TestServerRPC(RPCTypeEnum.RPCServerTest));
 		
 		InitRPCs();
 	}
@@ -17,7 +16,17 @@ modded class PluginBase
 
 	void InitRPCs()
 	{
+	}
 
+	void AddRPC(typename type, int id)
+	{
+		ref RPCBase rpc = type.Spawn();
+
+		if(rpc != null)
+		{
+			rpc.SetRPCType(id);
+			rpcs.Insert(id, rpc);
+		}
 	}
 
 	void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
@@ -25,7 +34,7 @@ modded class PluginBase
 		autoptr RPCBase rpc = rpcs.Get(rpc_type);
 
 		if(rpc != null)
-		{
+		{	
 			rpc.ExecuteRPC(sender, null, ctx);
 			return;
 		}
