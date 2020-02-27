@@ -1,5 +1,13 @@
+/*
+* @author GravityWolf
+* @version 0.1
+* @since 0.1
+*/
 modded class DayZGame
 {
+	/*
+	* Hashmap of RPCs
+	*/
 	private ref map<int, ref RPCBase> rpcs;
 
 	void DayZGame()
@@ -9,11 +17,19 @@ modded class DayZGame
 		InitRPCs();
 	}
 
+	/*
+	*	An Function to initalize RPCs. To Be Overriden by user.
+	*/
 	void InitRPCs()
 	{
-		AddRPC(TestRPC, RPCTypeEnum.RPCTest);
+		//AddRPC(TestRPC, RPCTypeEnum.RPCTest);
 	}
 
+	/*
+	*	Function to add RPCs to Hashmap
+	*	@param type Typename of the RPC class
+	*	@since 0.1
+	*/
 	void AddRPC(typename type, int id)
 	{
 		ref RPCBase rpc = type.Spawn();
@@ -33,7 +49,7 @@ modded class DayZGame
 
 			if(rpc != null)
 			{
-				rpc.ExecuteRPC(sender, null, ctx);
+				rpc.ExecuteRPC(sender, null, ctx, this);
 				return;
 			}
 		}

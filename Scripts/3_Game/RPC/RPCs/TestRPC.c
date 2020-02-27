@@ -1,11 +1,10 @@
-/*
 class TestRPC : ClientSideRPCBase
 {
-	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx)
+	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx, Class instance = null)
 	{
-		super.ExecuteRPC(sender, target, ctx);
+		super.ExecuteRPC(sender, target, ctx, instance);
 
-		if(!IsValidSide()) return; //Wish I didn't need to force people to do this, but returning from super doesn't exit child func.
+		if(!IsValid()) return; //Wish I didn't need to force people to do this, but returning from super doesn't exit child func.
 		
 		Print("I got a message from the server");
 
@@ -21,4 +20,3 @@ class TestRPC : ClientSideRPCBase
 		//You may use the Param version of RPCs as well as ScriptRPCs.
 	}
 }
-*/

@@ -1,13 +1,19 @@
+/*
+* @author GravityWolf
+* @version 0.1
+* @since 0.1
+*/
+
 class RPCBase
 {
 	private int type;
-	private bool isValidSide;
+	private bool isValid;
 
 	void RPCBase()
 	{
-		isValidSide = true;
+		isValid = true;
 	}
-	
+
 	int GetRPCType()
 	{
 		return type;
@@ -18,15 +24,15 @@ class RPCBase
 		type = t;
 	}
 
-	bool IsValidSide()
+	bool IsValid()
 	{
-		return isValidSide;
+		return isValid;
 	}
 
-	void SetIsValidSide(bool side)
+	void SetIsValid(bool valid)
 	{
-		isValidSide = side;
+		isValid = valid;
 	}
 
-	void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx);
+	void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx, Class instance = null);
 }

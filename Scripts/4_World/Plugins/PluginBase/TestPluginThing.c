@@ -1,4 +1,3 @@
-/*
 class TestPluginThing : PluginBase
 {
 	override void InitRPCs()
@@ -6,4 +5,3 @@ class TestPluginThing : PluginBase
 		AddRPC(TestServerRPC, RPCTypeEnum.RPCServerTest);
 	}
 }
-*/

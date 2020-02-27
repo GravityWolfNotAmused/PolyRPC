@@ -1,3 +1,9 @@
+/*
+* @author GravityWolf
+* @version 0.1
+* @since 0.1
+*/
+
 modded class PluginBase
 {
 	protected ref map<int, ref RPCBase> rpcs;
@@ -14,10 +20,18 @@ modded class PluginBase
 		delete rpcs;
 	}
 
+	/*
+	*	An Function to initalize RPCs. To Be Overriden by user.
+	*/
 	void InitRPCs()
 	{
 	}
 
+	/*
+	*	Function to add RPCs to Hashmap
+	*	@param type Typename of the RPC class
+	*	@since 0.1
+	*/
 	void AddRPC(typename type, int id)
 	{
 		ref RPCBase rpc = type.Spawn();
@@ -29,13 +43,21 @@ modded class PluginBase
 		}
 	}
 
+	/**
+	 * Checks to see if RPC is stored inside of class and executes it.
+	 *
+	 * @param sender Player Identity of the player who sent it.
+	 * @param rpc_type Integer type which the rpc is identitfied.
+	 * @param ctx   Class which caches data which is stored before being sent over network.
+	 * @since             0.1
+	 */
 	void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
 	{
 		autoptr RPCBase rpc = rpcs.Get(rpc_type);
 
 		if(rpc != null)
-		{	
-			rpc.ExecuteRPC(sender, null, ctx);
+		{
+			rpc.ExecuteRPC(sender, null, ctx, this);
 			return;
 		}
 	}
