@@ -1,17 +1,8 @@
-/*
-* @author GravityWolf
-* @version 0.1
-* @since 0.1
-*/
-
-modded class PlayerBase
+modded class AnimalBase
 {
-	/*
-	* Hashmap of RPCs with IDs as their key
-	*/
 	protected ref map<int, ref RPCBase> rpcs;
 
-	void PlayerBase()
+	void AnimalBase()
 	{
 		rpcs = new map<int, ref RPCBase>;
 

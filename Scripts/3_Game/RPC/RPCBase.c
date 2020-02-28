@@ -6,13 +6,7 @@
 
 class RPCBase
 {
-	private int type;
-	private bool isValid;
-
-	void RPCBase()
-	{
-		isValid = true;
-	}
+	protected int type;
 
 	int GetRPCType()
 	{
@@ -24,14 +18,9 @@ class RPCBase
 		type = t;
 	}
 
-	bool IsValid()
+	bool IsValid(PlayerIdentity sender)
 	{
-		return isValid;
-	}
-
-	void SetIsValid(bool valid)
-	{
-		isValid = valid;
+		return false;
 	}
 
 	void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx, Class instance = null);
