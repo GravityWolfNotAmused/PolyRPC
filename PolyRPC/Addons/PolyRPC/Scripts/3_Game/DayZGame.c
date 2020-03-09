@@ -8,11 +8,11 @@ modded class DayZGame
 	/*
 	* Hashmap of RPCs
 	*/
-	private ref map<int, ref RPCBase> rpcs;
+	private ref map<int, ref IRPCExecutable> rpcs;
 
 	void DayZGame()
 	{
-		rpcs = new map<int, ref RPCBase>;
+		rpcs = new map<int, ref IRPCExecutable>;
 
 		InitRPCs();
 	}
@@ -22,7 +22,6 @@ modded class DayZGame
 	*/
 	void InitRPCs()
 	{
-		//AddRPC(TestRPC, RPCTypeEnum.RPCTest);
 	}
 
 	/*
@@ -36,7 +35,6 @@ modded class DayZGame
 
 		if(rpc != null)
 		{
-			rpc.SetRPCType(id);
 			rpcs.Insert(id, rpc);
 		}
 	}
@@ -45,7 +43,7 @@ modded class DayZGame
 	{
 		if(target == null)
 		{
-			autoptr RPCBase rpc = rpcs.Get(rpc_type);
+			autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
 
 			if(rpc != null)
 			{

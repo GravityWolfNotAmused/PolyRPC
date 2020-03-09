@@ -9,11 +9,11 @@ modded class ItemBase
 	/*
 	* Hashmap of RPCs
 	*/
-	protected ref map<int, ref RPCBase> rpcs;
+	protected ref map<int, ref IRPCExecutable> rpcs;
 
 	void ItemBase()
 	{
-		rpcs = new map<int, ref RPCBase>;
+		rpcs = new map<int, ref IRPCExecutable>;
 
 		InitRPCs();
 	}
@@ -33,11 +33,10 @@ modded class ItemBase
 
 	void AddRPC(typename type, int id)
 	{
-		ref RPCBase rpc = type.Spawn();
+		ref IRPCExecutable rpc = type.Spawn();
 
 		if(rpc != null)
 		{
-			rpc.SetRPCType(id);
 			rpcs.Insert(id, rpc);
 		}
 	}
@@ -52,7 +51,7 @@ modded class ItemBase
 	 */
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx) 
 	{
-		autoptr RPCBase rpc = rpcs.Get(rpc_type);
+		autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
 
 		if(rpc != null)
 		{
