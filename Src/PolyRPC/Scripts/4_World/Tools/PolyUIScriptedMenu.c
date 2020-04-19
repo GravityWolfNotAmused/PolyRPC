@@ -51,7 +51,6 @@ class PolyUIScriptedMenu extends UIScriptedMenu
 		if(rpc != null)
 		{
 			rpc.ExecuteRPC(sender, null, ctx, this);
-			return;
 		}
 	}
 }
