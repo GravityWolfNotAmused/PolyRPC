@@ -45,7 +45,6 @@ class PolyUIManager : PluginBase
 				if(polyMenu)
 				{
 					menu.OnRPC(sender, rpc_type, ctx);
-					break;
 				}
 			}
 		}
