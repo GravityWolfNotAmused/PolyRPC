@@ -57,7 +57,6 @@ modded class PluginBase
 		if(rpc != null)
 		{
 			rpc.ExecuteRPC(sender, null, ctx, this);
-			return;
 		}
 	}
 }
