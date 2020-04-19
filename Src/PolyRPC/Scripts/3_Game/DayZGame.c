@@ -31,7 +31,7 @@ modded class DayZGame
 	*/
 	void AddRPC(typename type, int id)
 	{
-		ref RPCBase rpc = type.Spawn();
+		ref IRPCExecutable rpc = type.Spawn();
 
 		if(rpc != null)
 		{
