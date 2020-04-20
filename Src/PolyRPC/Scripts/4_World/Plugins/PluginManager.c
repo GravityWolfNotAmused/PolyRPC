@@ -38,14 +38,14 @@ class PolyUIManager : PluginBase
 			PolyUIScriptedMenu polyMenu = PolyUIScriptedMenu.Cast(menu);
 
 			while (menu)
-			{
-				menu = menu.GetParentMenu();
-				polyMenu = PolyUIScriptedMenu.Cast(menu);
-				
+			{				
 				if(polyMenu)
 				{
 					menu.OnRPC(sender, rpc_type, ctx);
 				}
+
+				menu = menu.GetParentMenu();
+				polyMenu = PolyUIScriptedMenu.Cast(menu);
 			}
 		}
 	}
