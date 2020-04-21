@@ -56,7 +56,8 @@ modded class PluginBase
 
 		if(rpc != null)
 		{
-			rpc.ExecuteRPC(sender, null, ctx, this);
+			if(rpc.IsValid(sender))
+				rpc.ExecuteRPC(sender, null, ctx, this);
 		}
 	}
 }

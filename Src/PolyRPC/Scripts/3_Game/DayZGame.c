@@ -47,7 +47,9 @@ modded class DayZGame
 
 			if(rpc != null)
 			{
-				rpc.ExecuteRPC(sender, null, ctx, this);
+				if(rpc.IsValid(sender))
+					rpc.ExecuteRPC(sender, null, ctx, this);
+					
 				return;
 			}
 		}

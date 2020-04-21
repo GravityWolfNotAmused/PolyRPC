@@ -46,7 +46,9 @@ modded class AnimalBase
 
 		if(rpc != null)
 		{
-			rpc.ExecuteRPC(sender, this, ctx);
+			if(rpc.IsValid(sender))
+				rpc.ExecuteRPC(sender, this, ctx);
+				
 			return;
 		}
 

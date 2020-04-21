@@ -4,8 +4,6 @@ class TestServerRPC : ServerSideRPCBase
 	{
 		super.ExecuteRPC(sender, target, ctx, instance);
 
-		if(!IsValid(sender)) return;
-
 		Print("I got a message from the client");
 
 		string msg;

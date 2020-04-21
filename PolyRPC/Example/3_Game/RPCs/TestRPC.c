@@ -4,8 +4,6 @@ class TestRPC : ClientSideRPCBase
 	{
 		super.ExecuteRPC(sender, target, ctx, instance);
 
-		if(!IsValid(sender)) return; //Wish I didn't need to force people to do this, but returning from super doesn't exit child func.
-		
 		Print("I got a message from the server");
 
 		string msg;
