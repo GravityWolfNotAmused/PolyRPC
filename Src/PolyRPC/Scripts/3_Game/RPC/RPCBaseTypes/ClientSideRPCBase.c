@@ -8,7 +8,7 @@ class ClientSideRPCBase : RPCBase
 {
 	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx, Class instance = null)
 	{
-		Print("[RPC Sent from Server]:: RPC Type: " + GetRPCType());
+		Print("[RPC Sent from Server]");
 	}
 
 	override bool IsValid(PlayerIdentity sender)
