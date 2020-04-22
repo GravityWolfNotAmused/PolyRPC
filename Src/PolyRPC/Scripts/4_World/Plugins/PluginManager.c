@@ -41,7 +41,7 @@ class PolyUIManager : PluginBase
 			{				
 				if(polyMenu)
 				{
-					menu.OnRPC(sender, rpc_type, ctx);
+					polyMenu.OnRPC(sender, rpc_type, ctx);
 				}
 
 				menu = menu.GetParentMenu();
