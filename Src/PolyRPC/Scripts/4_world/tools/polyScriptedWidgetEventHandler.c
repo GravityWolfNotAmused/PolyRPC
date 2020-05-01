@@ -1,13 +1,18 @@
-modded class AnimalBase
+class PolyScriptedWidgetEventHandler extends ScriptedWidgetEventHandler
 {
 	[NonSerialized()]
 	protected ref map<int, ref IRPCExecutable> rpcs;
 
-	void AnimalBase()
+	void PolyScriptedWidgetEventHandler()
 	{
 		rpcs = new map<int, ref IRPCExecutable>;
-
+		
 		InitRPCs();
+	}
+
+	void ~PolyScriptedWidgetEventHandler()
+	{
+		delete rpcs;
 	}
 
 	/*
@@ -22,7 +27,6 @@ modded class AnimalBase
 	*	@param type Typename of the RPC class
 	*	@since 0.1
 	*/
-
 	void AddRPC(typename type, int id)
 	{
 		ref IRPCExecutable rpc = type.Spawn();
@@ -41,18 +45,14 @@ modded class AnimalBase
 	 * @param ctx   Class which caches data which is stored before being sent over network.
 	 * @since             0.1
 	 */
-	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
-	{	
+	void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
+	{
 		autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
 
 		if(rpc != null)
 		{
 			if(rpc.IsValid(sender))
-				rpc.ExecuteRPC(sender, this, ctx);
-				
-			return;
+				rpc.ExecuteRPC(sender, null, ctx, this);
 		}
-
-		super.OnRPC(sender, rpc_type, ctx);
 	}
 }

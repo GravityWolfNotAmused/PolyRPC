@@ -9,6 +9,7 @@ modded class PlayerBase
 	/*
 	* Hashmap of RPCs with IDs as their key
 	*/
+	[NonSerialized()]
 	protected ref map<int, ref IRPCExecutable> rpcs;
 
 	void PlayerBase()

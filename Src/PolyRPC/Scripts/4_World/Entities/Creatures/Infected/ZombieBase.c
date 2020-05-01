@@ -1,5 +1,6 @@
 modded class ZombieBase
 {
+	[NonSerialized()]
 	protected ref map<int, ref IRPCExecutable> rpcs;
 
 	void ZombieBase()

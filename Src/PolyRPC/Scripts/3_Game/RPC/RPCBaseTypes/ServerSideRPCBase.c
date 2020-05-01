@@ -8,11 +8,11 @@ class ServerSideRPCBase : RPCBase
 {
 	override void ExecuteRPC(PlayerIdentity sender, Object target, ParamsReadContext ctx, Class instance = null)
 	{
-		Print("[RPC Sent from Client]:: Player Name: " + sender.GetName() + ", Player ID: " + sender.GetPlainId());
+		Print("[RPC Sent from Client]:: Player Name: " + sender.GetName() + ", Player ID: " + sender.GetPlainId() + ", Classname: " + ClassName());
 	}
 	
 	override bool IsValid(PlayerIdentity sender)
 	{
-		return (sender == null || GetGame().IsClient());
+		return (sender != null && GetGame().IsServer());
 	}
 }

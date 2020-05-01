@@ -9,6 +9,7 @@ modded class ItemBase
 	/*
 	* Hashmap of RPCs
 	*/
+	[NonSerialized()]
 	protected ref map<int, ref IRPCExecutable> rpcs;
 
 	void ItemBase()

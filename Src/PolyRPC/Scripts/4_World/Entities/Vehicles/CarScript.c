@@ -1,5 +1,6 @@
 modded class CarScript
 {
+	[NonSerialized()]
 	protected ref map<int, ref RPCBase> rpcs;
 
 	void CarScript()

@@ -1,33 +1,25 @@
-/*
-* @author GravityWolf
-* @version 0.1
-* @since 0.1
-*/
-modded class DayZGame
+modded class MissionServer
 {
-	/*
-	* Hashmap of RPCs
-	*/
 	[NonSerialized()]
 	private ref map<int, ref IRPCExecutable> rpcs;
 
-	void DayZGame()
+	void MissionServer()
 	{
+		GetDayZGame().Event_OnRPC.Insert( OnRPC );
 		rpcs = new map<int, ref IRPCExecutable>;
+
 		InitRPCs();
 	}
-	/*
-	*	An Function to initalize RPCs. To Be Overriden by user.
-	*/
+
+	void ~MissionServer()
+	{
+		delete rpcs;
+	}
+
 	void InitRPCs()
 	{
 	}
 
-	/*
-	*	Function to add RPCs to Hashmap
-	*	@param type Typename of the RPC class
-	*	@since 0.1
-	*/
 	void AddRPC(typename type, int id)
 	{
 		ref IRPCExecutable rpc = type.Spawn();
@@ -38,7 +30,7 @@ modded class DayZGame
 		}
 	}
 
-	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
+	void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
 		if(target == null)
 		{
@@ -48,11 +40,7 @@ modded class DayZGame
 			{
 				if(rpc.IsValid(sender))
 					rpc.ExecuteRPC(sender, null, ctx, this);
-					
-				return;
 			}
 		}
-
-		super.OnRPC(sender, target, rpc_type, ctx);
 	}
 }

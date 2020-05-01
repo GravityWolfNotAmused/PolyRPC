@@ -6,6 +6,7 @@
 
 modded class PluginBase
 {
+	[NonSerialized()]
 	protected ref map<int, ref IRPCExecutable> rpcs;
 
 	void PluginBase()
@@ -37,9 +38,7 @@ modded class PluginBase
 		ref IRPCExecutable rpc = type.Spawn();
 
 		if(rpc != null)
-		{
 			rpcs.Insert(id, rpc);
-		}
 	}
 
 	/**
