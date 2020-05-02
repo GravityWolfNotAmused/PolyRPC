@@ -1,9 +1,9 @@
-modded class MissionGameplay
+modded class MissionBase
 {
 	[NonSerialized()]
 	private ref map<int, ref IRPCExecutable> rpcs;
 
-	void MissionGameplay()
+	void MissionBase()
 	{
 		GetDayZGame().Event_OnRPC.Insert( OnRPC );
 		rpcs = new map<int, ref IRPCExecutable>;
@@ -11,7 +11,7 @@ modded class MissionGameplay
 		InitRPCs();
 	}
 
-	void ~MissionGameplay()
+	void ~MissionBase()
 	{
 		delete rpcs;
 	}
@@ -32,14 +32,17 @@ modded class MissionGameplay
 
 	void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
-		if(target == null)
+		if(rpc_type > 97)
 		{
-			autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
-
-			if(rpc != null)
+			if(target == null)
 			{
-				if(rpc.IsValid(sender))
-					rpc.ExecuteRPC(sender, null, ctx, this);
+				autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
+
+				if(rpc != null)
+				{
+					if(rpc.IsValid(sender))
+						rpc.ExecuteRPC(sender, null, ctx, this);
+				}
 			}
 		}
 	}

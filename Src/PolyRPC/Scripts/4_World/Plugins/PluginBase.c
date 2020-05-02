@@ -14,6 +14,7 @@ modded class PluginBase
 		rpcs = new map<int, ref IRPCExecutable>;
 		
 		InitRPCs();
+		GetDayZGame().Event_OnRPC.Insert( OnRPC );
 	}
 
 	void ~PluginBase()
@@ -49,14 +50,20 @@ modded class PluginBase
 	 * @param ctx   Class which caches data which is stored before being sent over network.
 	 * @since             0.1
 	 */
-	void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
+	void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
-		autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
-
-		if(rpc != null)
+		if(rpc_type > 97)
 		{
-			if(rpc.IsValid(sender))
-				rpc.ExecuteRPC(sender, null, ctx, this);
+			if(target == null)
+			{
+				autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
+			
+				if(rpc != null)
+				{
+					if(rpc.IsValid(sender))
+						rpc.ExecuteRPC(sender, null, ctx, this);
+				}
+			}
 		}
 	}
 }

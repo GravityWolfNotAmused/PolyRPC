@@ -52,14 +52,17 @@ modded class PlayerBase
 	 */
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
 	{	
-		autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
-
-		if(rpc != null)
+		if(rpc_type > 97)
 		{
-			if(rpc.IsValid(sender))
-				rpc.ExecuteRPC(sender, this, ctx);
-				
-			return;
+			autoptr IRPCExecutable rpc = rpcs.Get(rpc_type);
+
+			if(rpc != null)
+			{
+				if(rpc.IsValid(sender))
+					rpc.ExecuteRPC(sender, this, ctx);
+					
+				return;
+			}
 		}
 
 		super.OnRPC(sender, rpc_type, ctx);

@@ -8,7 +8,7 @@ modded class PluginManager
 {
 	void PluginManager()
 	{
-		GetDayZGame().Event_OnRPC.Insert( OnRPC );
+		//GetDayZGame().Event_OnRPC.Insert( OnRPC );
 	}
 
 	override void Init()
@@ -20,17 +20,24 @@ modded class PluginManager
 
 	void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
-		foreach(typename type, PluginBase plugin : m_PluginsPtrs)
+		if((sender == null && GetGame().IsClient()) || (sender == null && GetGame().IsClient()))
 		{
-			plugin.OnRPC(sender, rpc_type, ctx);
+			if(rpc_type > 97)
+			{		
+				foreach(typename type, PluginBase plugin : m_PluginsPtrs)
+				{
+					//plugin.OnRPC(sender, rpc_type, ctx);
+				}
+			}
 		}
 	}
 }
 
 class PolyUIManager : PluginBase
 {
-	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
+	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
+		/*
 		if(GetGame().IsClient())
 		{
 			UIManager manager = GetGame().GetUIManager();
@@ -48,5 +55,6 @@ class PolyUIManager : PluginBase
 				polyMenu = PolyUIScriptedMenu.Cast(menu);
 			}
 		}
+		*/
 	}
 }
